@@ -4,17 +4,30 @@
   "description": "Turns SVG shapes (polygon, polyline, rect, g) into SVG paths. It can merge groups and apply transforms.",
   "main": "src/lib.js",
   "dependencies": {
+    "boxen": "^5.0.1",
+    "chalk": "^4.1.2",
+    "dotenv": "^10.0.0",
+    "graceful-fs": "^4.2.8",
+    "node-ts": "^5.1.2",
     "svgpath": "^2.1.6",
-    "xmldoc": "^0.5.0"
+    "ts-node": "^10.2.1",
+    "xmldoc": "^0.5.0",
+    "yargs": "^17.1.1"
   },
   "devDependencies": {
+    "@types/xmldoc": "^1.1.6",
+    "@types/yargs": "^17.0.2",
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
     "proxyquire": "^1.7.9",
     "sinon": "^1.17.4"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "flatten": "node src/lib.js"
+  },
+  "bin": {
+    "svgflatten": "./src/cli.js"
   },
   "keywords": [
     "svg",
