@@ -1,40 +1,58 @@
-var svgpath = require('svgpath');
+import { XmlDocument } from 'xmldoc';
+import { XmlNode } from 'xmldoc';
+import { XmlElement } from 'xmldoc';
+import { XmlChunk } from './common';
 
-function transformGroup(dom) {
-    var newChildren = [];
+import { SvgPathify } from './pathify';
 
-    dom.children.forEach(function (child) {
-        newChildren.push(transform(child));
+export class SvgTransform {
+
+  public static transformGroup(dom:XmlChunk):XmlDocument {
+    let newChildren:XmlNode[] = [];
+    dom = (dom as XmlDocument);
+
+    dom.children.forEach((child) => {
+      newChildren.push(SvgTransform.transform((child as XmlDocument)));
     });
 
     dom.children = newChildren;
 
     if (newChildren.length > 0) {
-        dom.firstChild = newChildren[0];
-        dom.lastChild = newChildren[newChildren.length - 1];
+      dom.firstChild = newChildren[0];
+      dom.lastChild = newChildren[newChildren.length - 1];
     }
 
-    return dom;
-}
+    return (dom as XmlDocument);
+  }
 
-function transformPath(dom) {
-    dom.attr.d = svgpath(dom.attr.d).transform(dom.attr.transform)
-      .round(10)
-      .toString();
+  public static transformPath(dom:XmlChunk):XmlDocument {
+    if(dom && (dom as XmlDocument).name != null) {
+      dom = (dom as XmlDocument);
+      dom.attr.d = SvgPathify.svgpath(dom.attr.d).transform(dom.attr.transform)
+        .round(10)
+        .toString();
 
-    delete dom.attr.transform;
+      delete dom.attr.transform;
 
-    return dom;
-}
-
-function transform(dom) {
-    if (dom.name === 'path' && dom.attr.transform) {
-        return transformPath(dom);
-    } else if (dom.name === 'svg' || dom.name === 'g') {
-        return transformGroup(dom);
+      return (dom as XmlDocument);
     } else {
-        return dom;
+      return (dom as XmlDocument);
     }
+  }
+
+  public static transform(dom:XmlChunk):XmlDocument {
+    if(dom && (dom as XmlDocument).name != null) {
+      dom = (dom as XmlDocument);
+      if (dom.name === 'path' && dom.attr.transform) {
+        return SvgTransform.transformPath(dom);
+      } else if (dom.name === 'svg' || dom.name === 'g') {
+        return SvgTransform.transformGroup(dom);
+      } else {
+        return (dom as XmlDocument);
+      }
+    } else {
+      return (dom as XmlDocument);
+    }
+  }
 }
 
-module.exports = transform;

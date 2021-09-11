@@ -1,49 +1,57 @@
-var transform = require('./transform.js');
-var xmldoc = require('xmldoc');
+import { XmlDocument } from 'xmldoc';
+import { XmlNode } from 'xmldoc';
+import { XmlElement } from 'xmldoc';
+import { XmlChunk } from './common';
+import * as xmldoc from 'xmldoc';
 
-function flattenSvg(dom) {
-    var newChildren = [];
+import { SvgTransform } from './transform';
+export class SvgFlatten {
 
-    dom.children.forEach(function (child) {
-        newChildren.push(flatten(child));
+  public static flattenSvg(dom:XmlChunk):XmlDocument {
+    let newChildren:XmlNode[] = [];
+    dom = (dom as XmlDocument);
+    dom.children.forEach((child) => {
+      newChildren.push(SvgFlatten.flatten(child));
     });
 
     dom.children = newChildren;
 
-    if (newChildren.length > 0) {
-        dom.firstChild = newChildren[0];
-        dom.lastChild = newChildren[newChildren.length - 1];
+    if(newChildren.length > 0) {
+      dom.firstChild = newChildren[0];
+      dom.lastChild = newChildren[newChildren.length - 1];
     }
 
-    return dom;
-}
+    return (dom as XmlDocument);
+  }
 
-function flattenGroup(dom) {
-    var path = new xmldoc.XmlDocument('<path/>');
+  public static flattenGroup(dom:XmlChunk):XmlDocument {
+    let svgPath = new xmldoc.XmlDocument('<path/>');
+    dom = (dom as XmlDocument);
 
-    path.attr = dom.attr;
-    path.attr.d = "";
+    svgPath.attr = dom.attr;
+    svgPath.attr.d = "";
 
-    dom.children.forEach(function (child) {
-        var flatChild = transform(flatten(child));
-
-        if (flatChild.attr.d) {
-            var prefix = path.attr.d.length ? " " : "";
-            path.attr.d += prefix + flatChild.attr.d;
-        }
+    dom.children.forEach((child) => {
+      let flatChild = SvgTransform.transform(SvgFlatten.flatten(child));
+      if(flatChild.attr.d) {
+        let prefix = svgPath.attr.d.length ? " " : "";
+        svgPath.attr.d += prefix + flatChild.attr.d;
+      }
     });
 
-    return path;
-}
+    return svgPath;
+  }
 
-function flatten(dom) {
-    if (dom.name === 'svg') {
-        return flattenSvg(dom);
+  public static flatten(dom:XmlChunk):XmlDocument {
+    dom = (dom as XmlDocument);
+    if(dom.name === 'svg') {
+      return SvgFlatten.flattenSvg(dom);
     } else if (dom.name === 'g') {
-        return flattenGroup(dom);
+      return SvgFlatten.flattenGroup(dom);
     } else {
-        return dom;
+      return (dom as XmlDocument);
     }
+  }
+
 }
 
-module.exports = flatten;

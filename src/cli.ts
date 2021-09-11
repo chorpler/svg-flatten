@@ -1,14 +1,22 @@
-#!/usr/bin/env node
+#!/usr/bin/env ts-node
 
-const chalk  = require('chalk');
-const path   = require('path');
-const fs     = require('graceful-fs');
-const boxen  = require('boxen');
-const yargs  = require('yargs');
-const dotenv = require('dotenv');
+import * as chalk from 'chalk';
+import * as path  from 'path';
+import * as fs    from 'graceful-fs';
+import * as boxen from 'boxen';
+import * as YargsAll from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import * as dotenv from 'dotenv';
+import { SvgMod } from './svgmod';
+// const chalk  = require('chalk');
+// const path   = require('path');
+// const fs     = require('graceful-fs');
+// const boxen  = require('boxen');
+// const yargs  = require('yargs');
+// const dotenv = require('dotenv');
 
-const flatlib = require('./lib');
-
+// const flatlib = require('./lib');
+const yargs = YargsAll.default;
 
 dotenv.config();
 
@@ -64,8 +72,8 @@ async function main(inputargs) {
   // let inputFile = fs.readFileSync(tempFilePath, { flag: 'r' });
   let inputFile = fs.readFileSync(inputFilePath, 'utf-8', { flag: 'r'});
   let svgSource = inputFile.toString();
-  let svglib = flatlib(svgSource);
-  let outsvg = svglib.flatten().value();
+  let svglib = new SvgMod(svgSource);
+  let outsvg = svglib.transform().value();
   if(inputargs.output) {
     let outfilePath = path.resolve(inputargs.output);
     fs.writeFileSync(outfilePath, outsvg, { encoding: 'utf8' });
@@ -73,9 +81,9 @@ async function main(inputargs) {
   } else {
     console.log(outsvg);
   }
-  fs.unlinkSync(tempFilePath);
-  fs.rmdirSync(tempDir);
+  // fs.unlinkSync(tempFilePath);
+  // fs.rmdirSync(tempDir);
   return 0;
 }
 
-return main(argv);
+main(argv);
