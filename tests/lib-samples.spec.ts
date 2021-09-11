@@ -1,9 +1,15 @@
 /*jshint mocha: true*/
 
-var expect = require('chai').expect;
-var fs = require('fs');
-var svgflatten = require('../src/lib.js');
-var xmldoc = require('xmldoc');
+import * as fs from 'graceful-fs';
+import { expect } from 'chai';
+import { describe } from 'mocha';
+import { it } from 'mocha';
+import { XmlDocument } from 'xmldoc';
+import * as xmldoc from 'xmldoc';
+
+import { SvgMod } from '../src/index';
+import { getNode } from '../src/index';
+import { XmlChunk } from '../src/index';
 
 // test
 describe('svg-flatten: test samples', function () {
@@ -14,8 +20,9 @@ describe('svg-flatten: test samples', function () {
             var sample = fs.readFileSync(__dirname + '/samples/' + basename + '.svg', 'utf8');
             var expectedResult = fs.readFileSync(__dirname + '/samples/' + basename + '_result.svg', 'utf8');
 
+            var svgfile = new SvgMod(sample);
             // test with string
-            var result = svgflatten(sample)
+            var result = svgfile.flatten(sample)
               .pathify()
               .flatten()
               .transform()
@@ -27,7 +34,8 @@ describe('svg-flatten: test samples', function () {
             var sampleDom = new xmldoc.XmlDocument(sample);
             var expectedResultDom = new xmldoc.XmlDocument(expectedResult);
 
-            var resultDom = svgflatten(sampleDom)
+            var svgfile2 = new SvgMod(sampleDom);
+            var resultDom = svgfile2.flatten(sampleDom)
               .pathify()
               .flatten()
               .transform()

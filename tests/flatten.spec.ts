@@ -1,8 +1,16 @@
 /*jshint mocha: true*/
 
-var expect = require('chai').expect;
-var xmldoc = require('xmldoc');
-var flattenFn = require('../src/flatten.js');
+import { expect } from 'chai';
+import { describe } from 'mocha';
+import { it } from 'mocha';
+import * as xmldoc from 'xmldoc';
+
+import { SvgFlatten } from '../src/flatten';
+// import { SvgFlatten } from 'flatten';
+// import { SvgFlatten } from 'src/index';
+// var expect = require('chai').expect;
+// var xmldoc = require('xmldoc');
+// var flattenFn = require('../src/flatten.js');
 
 // test
 describe('svg-flatten: flatten function', function() {
@@ -11,7 +19,7 @@ describe('svg-flatten: flatten function', function() {
         var target = new xmldoc.XmlDocument('<svg><path d="M300,200 350,250 M400,200 450,250"/></svg>');
 
         // test
-        expect(flattenFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgFlatten.flatten(source).toString()).to.be.equal(target.toString());
     });
 
     it('should flatten nested path groups', function() {
@@ -19,7 +27,7 @@ describe('svg-flatten: flatten function', function() {
         var target = new xmldoc.XmlDocument('<svg><path d="M300,200 350,250 M400,200 450,250 M100,200 150,250"/></svg>');
 
         // test
-        expect(flattenFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgFlatten.flatten(source).toString()).to.be.equal(target.toString());
     });
 
     it('should work with complex groups', function() {
@@ -27,6 +35,6 @@ describe('svg-flatten: flatten function', function() {
         var target = new xmldoc.XmlDocument('<svg><path transform="translate(200, 300) rotate(20)" title="gauche" d="M250 100L300 150M350 100L400 150"/></svg>');
 
         // test
-        expect(flattenFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgFlatten.flatten(source).toString()).to.be.equal(target.toString());
     });
 });

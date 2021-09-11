@@ -1,8 +1,13 @@
 /*jshint mocha: true*/
+import { expect } from 'chai';
+import { describe } from 'mocha';
+import { it } from 'mocha';
+import { XmlDocument } from 'xmldoc';
+import * as xmldoc from 'xmldoc';
 
-var expect = require('chai').expect;
-var xmldoc = require('xmldoc');
-var pathifyFn = require('../src/pathify.js');
+import { SvgPathify } from '../src/index';
+import { getNode } from '../src/index';
+import { XmlChunk } from '../src/index';
 
 // test
 describe('svg-flatten: pathify function', function() {
@@ -11,7 +16,7 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><path d="M83,200a17,17 0 1,0 34,0a17,17 0 1,0 -34,0"/></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should convert ellipse', function() {
@@ -19,7 +24,7 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><path d="M189,200a11,42 0 1,0 22,0a11,42 0 1,0 -22,0"/></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should convert line', function() {
@@ -27,7 +32,7 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><path d="M300,200 350,250"/></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should convert polygons', function() {
@@ -35,7 +40,7 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><path d="M100,10 40,198 190,78 10,78 160,198z"/></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should convert polyline', function() {
@@ -43,7 +48,7 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><path style="fill:none" d="M400,150 450,250 400,300"/></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should convert polyline with extra whitespaces', function() {
@@ -51,7 +56,7 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><path style="fill:none" d="M400,150 450,250 400,300"/></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should convert rect', function() {
@@ -59,21 +64,21 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><path d="M500,200 580,200 580,300 500,300z"/></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should preserve groups', function() {
         var source = new xmldoc.XmlDocument('<svg viewBox="0 0 1920.7 1133.7"><path d="M976.7,262v294.4h294.4V262H976.7z M1221,506.4h-97.1v-97.1h97.1V506.4z"/></svg>');
 
         // test
-        expect(pathifyFn(source)).to.be.equal(source);
+        expect(SvgPathify.pathify(source)).to.be.equal(source);
     });
     it('should preserve nested groups', function() {
         var source = new xmldoc.XmlDocument('<svg><g transform="rotate(20)"><g transform="rotate(30)"><line x1="300" y1="200" x2="350" y2="250"/></g></g></svg>');
         var target = new xmldoc.XmlDocument('<svg><g transform="rotate(20)"><g transform="rotate(30)"><path d="M300,200 350,250"/></g></g></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 
     it('should should convert group children', function() {
@@ -81,6 +86,6 @@ describe('svg-flatten: pathify function', function() {
         var target = new xmldoc.XmlDocument('<svg><g transform="rotate(45)"><path d="M300,200 350,250"/><path d="M83,200a17,17 0 1,0 34,0a17,17 0 1,0 -34,0"/></g></svg>');
 
         // test
-        expect(pathifyFn(source).toString()).to.be.equal(target.toString());
+        expect(SvgPathify.pathify(source).toString()).to.be.equal(target.toString());
     });
 });

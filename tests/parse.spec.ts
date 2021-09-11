@@ -1,9 +1,17 @@
 /*jshint mocha: true*/
 /*jshint expr: true*/
 /*jshint multistr: true*/
+import { expect } from 'chai';
+import { describe } from 'mocha';
+import { it } from 'mocha';
+import { XmlDocument } from 'xmldoc';
+import * as xmldoc from 'xmldoc';
 
-var expect = require('chai').expect;
-var parseFn = require('../src/parse.js');
+import { SvgMod } from '../src/index';
+import { getNode } from '../src/index';
+import { XmlChunk } from '../src/index';
+
+// var SvgMod.parse = require('../src/parse.js');
 
 // sample files
 var file1 = '<?xml version="1.0" encoding="utf-8"?> \
@@ -37,19 +45,19 @@ var file2 = '<?xml version="1.0" encoding="utf-8"?> \
 // test
 describe('svg-flatten: parse function', function() {
     it('should successfully parse a simple svg', function() {
-        var dom = parseFn(file1);
-
+        let dom = SvgMod.parse(file1);
+        dom = (dom as XmlDocument);
         // test root node
         expect(dom.name).to.be.equal('svg');
         expect(dom.attr.viewBox).to.be.equal('0 0 1920.7 1133.7');
 
         // test child nodes
         expect(dom.children.length).to.be.equal(1);
-        expect(dom.children[0].name).to.be.equal('rect');
+        expect(getNode(dom.children[0]).name).to.be.equal('rect');
     });
 
     it('should successfully parse a complex svg', function() {
-        var dom = parseFn(file2);
+        var dom = SvgMod.parse(file2);
 
         // test root node
         expect(dom.name).to.be.equal('svg');
@@ -57,13 +65,13 @@ describe('svg-flatten: parse function', function() {
 
         // test child nodes
         expect(dom.children.length).to.be.equal(10);
-        expect(dom.children[0].name).to.be.equal('style');
-        expect(dom.children[1].name).to.be.equal('rect');
-        expect(dom.children[7].attr.transform).to.be.equal('translate(0, 100)');
+        expect(getNode(dom.children[0]).name).to.be.equal('style');
+        expect(getNode(dom.children[1]).name).to.be.equal('rect');
+        expect(getNode(dom.children[7]).attr.transform).to.be.equal('translate(0, 100)');
     });
 
     it('should not fail when the source is invalid', function() {
-        var dom = parseFn("invalid input");
+        var dom = SvgMod.parse("invalid input");
 
         // test root node
         expect(dom.name).to.be.equal('invalid');
