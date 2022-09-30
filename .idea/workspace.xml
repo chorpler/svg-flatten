@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="" />
+    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="Added .idea directory from WebStorm" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +36,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="original" />
+        <entry key="$PROJECT_DIR$" value="stadline_master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,6 +49,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1664578774" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="stadline_master" />
                     <option name="lastUsedInstant" value="1664573507" />
@@ -89,7 +93,7 @@
     "eu.ydp.idea.ts.spec.generator.settings.spec.template": "import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';\n\ndescribe('$ClassName$', () => {\n  let $ObjName$:$ClassName$;\n\n  beforeEach(() => {\n    $ObjName$ = new $ClassName$();\n  });\n\n  describe('', () => {\n    it('', () => {\n      // given\n\n      // when\n\n      // then\n    });\n  });\n});\n",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/admin/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0/222.3739.57/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/Users/admin/WebstormProjects/svg-flatten/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true",
     "zielu.gittoolbox.prj.config.selected.tab.id": "zielu.gittoolbox.config.shared.autoFetch"
   }
@@ -105,8 +109,16 @@
       <workItem from="1664563215532" duration="878000" />
       <workItem from="1664567960428" duration="539000" />
       <workItem from="1664568513787" duration="1136000" />
-      <workItem from="1664573178118" duration="1649000" />
+      <workItem from="1664573178118" duration="2125000" />
     </task>
+    <task id="LOCAL-00001" summary="Added .idea directory from WebStorm">
+      <created>1664579124349</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664579124349</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,5 +134,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added .idea directory from WebStorm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .idea directory from WebStorm" />
   </component>
 </project>
