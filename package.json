@@ -1,6 +1,6 @@
 {
   "name": "svg-flatten",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turns SVG shapes (polygon, polyline, rect, g) into SVG paths. It can merge groups and apply transforms.",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.es.js",
@@ -80,6 +80,8 @@
     "prepublishOnly": "npm run build",
     "compile": "tsc -p ./tsconfig.json",
     "clean": "rimraf lib/* dist/* compiled/* && mkdirp lib dist compiled",
+    "lint": "jshint **/*.js",
+    "testOriginal": "mocha",
     "testold": "ts-mocha",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
     "test-types": "tsc --noEmit -p ./tsconfig.json",
@@ -115,7 +117,7 @@
     "type": "git",
     "url": "git+https://github.com/chorpler/svg-flatten.git"
   },
-  "standard-version": {
+  "standard-versionOriginal": {
     "scripts": {
       "postbump": "git checkout -- bower.json"
     }
@@ -140,5 +142,16 @@
     "doc": "docs",
     "lib": "lib",
     "test": "test"
+  },
+  "devDependenciesOriginal": {
+    "chai": "^3.5.0",
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5",
+    "proxyquire": "^1.7.9",
+    "sinon": "^1.17.4"
+  },
+  "scriptsOriginal": {
+    "test": "mocha",
+    "lint": "jshint **/*.js"
   }
 }
