@@ -1,7 +1,7 @@
 import { XmlDocument } from 'xmldoc';
 import { XmlNode } from 'xmldoc';
-import { XmlElement } from 'xmldoc';
 import { XmlChunk } from './common';
+// import { XmlElement } from 'xmldoc';
 
 import * as svgpathimport from 'svgpath';
 const svgpath = svgpathimport.default;
@@ -133,8 +133,8 @@ export class SvgPathify {
 
   public convertRect(dom:XmlChunk):XmlDocument {
     dom = (dom as XmlDocument);
-    let x = Number(dom.attr.x);
-    let y = Number(dom.attr.y);
+    let x = Number(dom.attr.x || 0);
+    let y = Number(dom.attr.y || 0);
     let width = Number(dom.attr.width);
     let height = Number(dom.attr.height);
 
