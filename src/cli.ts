@@ -3,7 +3,7 @@
 import chalk from 'chalk';
 import * as path  from 'path';
 import * as fs    from 'graceful-fs';
-// import * as boxen from 'boxen';
+import boxen from 'boxen';
 // import * as YargsAll from 'yargs';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -11,21 +11,47 @@ import * as dotenv from 'dotenv';
 import { SvgMod } from './svgmod';
 import { commands } from './cmds';
 
-// const chalk  = require('chalk');
-// const path   = require('path');
-// const fs     = require('graceful-fs');
-// const boxen  = require('boxen');
-// const yargs  = require('yargs');
-// const dotenv = require('dotenv');
-
-// import cmdFlatten from './cmds/flatten';
-
-// const flatlib = require('./lib');
-// const yargs = YargsAll.default;
 // const cmd = 'svgflatten';
 const cmd = 'svgmod';
 
 dotenv.config();
+
+const rawArgV = process.argv;
+// console.log("RAW ARGS:\n", rawArgV);
+
+const boxenOptions:boxen.Options = {
+  padding: {top: 1, bottom: 1, left: 46, right: 46},
+  margin: 0,
+  // borderStyle: "single",
+  // borderStyle: "double",
+  borderStyle: "bold",
+  // borderStyle: "round",
+  // borderStyle: ("double" as any),
+  // borderStyle: ("round" as any),
+  // borderColor: "whiteBright",
+  borderColor: "yellowBright",
+  // backgroundColor: "#555555",
+};
+
+const argv = yargs(hideBin(rawArgV))
+// .usage(`\n` + chalk.yellowBright.bold.underline('USAGE') + `\n$0 ` + chalk.cyanBright('(command)') + ` ` + chalk.greenBright(`<input_file>`) + ` [-o <output_file>]`)
+.usage(`\n` + boxen(chalk.whiteBright.bold('USAGE'), boxenOptions) + `\n$0 ` + chalk.cyanBright('(command)') + ` ` + chalk.greenBright(`<input_file>`) + ` [-o <output_file>]`)
+.command((commands as any))
+.positional("input_file", {describe: "SVG file to flatten"})
+.option("o", { alias: ["output"], describe: "Output filename (default stdout)", type: "string", demandOption: false })
+.option("f", { alias: ["force"], describe: "Overwrite input file", type: "boolean", demandOption: false })
+// .help('h', false)
+.alias('h', 'help')
+.alias('v', 'version')
+.help('help')
+.version()
+//  .command('$0', 'the default command', () => {}, (argv) => {
+    // main(argv);
+  // })
+.demandCommand(1)
+.wrap(100)
+.argv;
+ 
 
 // function checkCommands(yargs, argv, numRequired) {
 //   if (argv._.length < numRequired) {
@@ -96,28 +122,6 @@ dotenv.config();
 //   recurse: true,
 //   extensions: ['js'],
 // })
-
-const rawArgV = process.argv;
-// console.log("RAW ARGS:\n", rawArgV);
-const argv = yargs(hideBin(rawArgV))
-.usage(`\n\n` + chalk.bgYellow.black('USAGE') + `\n=====\n$0 ` + chalk.cyanBright('(command)') + ` ` + chalk.greenBright(`<input_file>`) + ` [-o <output_file>]`)
-.command((commands as any))
-.positional("input_file", {describe: "SVG file to flatten"})
-.option("o", { alias: ["output"], describe: "Output filename (default stdout)", type: "string", demandOption: false })
-.option("f", { alias: ["force"], describe: "Overwrite input file", type: "boolean", demandOption: false })
-// .help('h', false)
-.alias('h', 'help')
-.alias('v', 'version')
-.help('help')
-.version()
-//  .command('$0', 'the default command', () => {}, (argv) => {
-    // main(argv);
-  // })
-.demandCommand(1)
-.wrap(100)
-.argv;
- 
-
 // .command({
 //     command: 'pathify',
 //     describe: 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths',
@@ -184,14 +188,6 @@ const argv = yargs(hideBin(rawArgV))
 //    type: 'boolean',
 //    description: 'Run with verbose logging'
 //  });
- 
-// const boxenOptions = {
-//   padding: 1,
-//   margin: 1,
-//   borderStyle: "round",
-//   borderColor: "green",
-//   backgroundColor: "#555555"
-//  };
  
 // let inputFilename = argv._.inputfile;
 
