@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="Added .idea directory from WebStorm" />
+    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="Updated .idea directory from WebStorm">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/cli.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/cli.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/flatten.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/flatten.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/lib.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/lib.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/parse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/parse.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/pathify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/pathify.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/svgmod.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/svgmod.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/transform.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/transform.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +61,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -50,12 +70,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1664578774" />
+                    <option name="branchName" value="release/2.0.0" />
+                    <option name="lastUsedInstant" value="1664579268" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="stadline_master" />
-                    <option name="lastUsedInstant" value="1664573507" />
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1664578774" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="original" />
@@ -92,7 +112,7 @@
     "WebServerToolWindowFactoryState": "false",
     "eu.ydp.idea.ts.spec.generator.settings.spec.template": "import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';\n\ndescribe('$ClassName$', () => {\n  let $ObjName$:$ClassName$;\n\n  beforeEach(() => {\n    $ObjName$ = new $ClassName$();\n  });\n\n  describe('', () => {\n    it('', () => {\n      // given\n\n      // when\n\n      // then\n    });\n  });\n});\n",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
     "ts.external.directory.path": "/Users/admin/WebstormProjects/svg-flatten/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true",
     "zielu.gittoolbox.prj.config.selected.tab.id": "zielu.gittoolbox.config.shared.autoFetch"
@@ -110,6 +130,7 @@
       <workItem from="1664567960428" duration="539000" />
       <workItem from="1664568513787" duration="1136000" />
       <workItem from="1664573178118" duration="2125000" />
+      <workItem from="1664583758277" duration="263000" />
     </task>
     <task id="LOCAL-00001" summary="Added .idea directory from WebStorm">
       <created>1664579124349</created>
