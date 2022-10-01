@@ -1,6 +1,6 @@
 {
   "name": "svg-flatten",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Turns SVG shapes (polygon, polyline, rect, g) into SVG paths. It can merge groups and apply transforms.",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.es.js",
@@ -8,7 +8,36 @@
   "browser": "lib/index.browser.js",
   "types": "src/index.ts",
   "bin": {
-    "svgflatten": "./src/cli.js"
+    "svgflatten": "./build/cli.js"
+  },
+  "files": [
+    "build",
+    "compiled",
+    "dist",
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "clean": "rimraf build/* lib/* dist/* compiled/* && mkdirp build lib dist compiled",
+    "clrscr": "node -e \"process.stdout.write('\\x1B[2J\\x1B[0f')\"",
+    "declarations": "tsc -p ./tsconfig.json --emitDeclarationOnly",
+    "rollup-cjs": "rollup -c config/rollup.config.cjs.js && rollup -c config/rollup.config.browser.cjs.js",
+    "rollup-es": "rollup -c config/rollup.config.es.js && rollup -c config/rollup.config.browser.es.js",
+    "rollup": "npm-run-all --parallel rollup-cjs rollup-es",
+    "browserify:rollup": "browserify -t [ babelify --global --presets [ @babel/preset-env ] ] -t brfs -p bundle-collapser/plugin -s SvgMod lib/index.browser.js > dist/svgmod.js",
+    "browserify": "npm run browserify:rollup",
+    "minify": "uglifyjs -mc < dist/svgmod.js > dist/svgmod.min.js",
+    "build": "npm run build:prod",
+    "build:dev": "npm-run-all clean rollup browserify minify",
+    "build:prod": "npm-run-all clean rollup browserify minify",
+    "prepublishOnly": "npm run build",
+    "compile": "tsc -p ./tsconfig.json",
+    "lint": "jshint **/*.js",
+    "testOriginal": "mocha",
+    "testold": "ts-mocha",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
+    "test-types": "tsc --noEmit -p ./tsconfig.json",
+    "flatten": "node build/lib.js"
   },
   "dependencies": {
     "boxen": "^5.0.1",
@@ -59,40 +88,12 @@
     "rollup-plugin-typescript2": "^0.30.0",
     "sinon": "^11.1.2",
     "standard-version": "^9.3.1",
-    "ts-mocha": "^8.0.0",
+    "ts-mocha": "^10.0.0",
     "ts-mock-imports": "^1.3.7",
     "typescript": "^4.4.3",
     "uglify-js": "^3.14.2",
     "watchify": "^4.0.0"
   },
-  "scripts": {
-    "clrscr": "node -e \"process.stdout.write('\\x1B[2J\\x1B[0f')\"",
-    "declarations": "tsc -p ./tsconfig.json --emitDeclarationOnly",
-    "rollup-cjs": "rollup -c config/rollup.config.cjs.js && rollup -c config/rollup.config.browser.cjs.js",
-    "rollup-es": "rollup -c config/rollup.config.es.js && rollup -c config/rollup.config.browser.es.js",
-    "rollup": "npm-run-all --parallel rollup-cjs rollup-es",
-    "browserify:rollup": "browserify -t [ babelify --global --presets [ @babel/preset-env ] ] -t brfs -p bundle-collapser/plugin -s SvgMod lib/index.browser.js > dist/svgmod.js",
-    "browserify": "npm run browserify:rollup",
-    "minify": "uglifyjs -mc < dist/svgmod.js > dist/svgmod.min.js",
-    "build": "npm run build:prod",
-    "build:dev": "npm-run-all clean rollup browserify minify",
-    "build:prod": "npm-run-all clean rollup browserify minify",
-    "prepublishOnly": "npm run build",
-    "compile": "tsc -p ./tsconfig.json",
-    "clean": "rimraf lib/* dist/* compiled/* && mkdirp lib dist compiled",
-    "lint": "jshint **/*.js",
-    "testOriginal": "mocha",
-    "testold": "ts-mocha",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
-    "test-types": "tsc --noEmit -p ./tsconfig.json",
-    "flatten": "node src/lib.js"
-  },
-  "files": [
-    "compiled",
-    "dist",
-    "lib",
-    "src"
-  ],
   "packageComments": {
     "main": "lib/index.js"
   },
@@ -153,5 +154,15 @@
   "scriptsOriginal": {
     "test": "mocha",
     "lint": "jshint **/*.js"
+  },
+  "oldHelpers": {
+    "main": "lib/index.js",
+    "jsnext:main": "lib/index.es.js",
+    "module": "lib/index.es.js",
+    "browser": "lib/index.browser.js",
+    "types": "src/index.ts",
+    "bin": {
+      "svgflatten": "./build/cli.js"
+    }
   }
 }
