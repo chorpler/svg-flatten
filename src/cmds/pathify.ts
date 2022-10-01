@@ -1,14 +1,20 @@
 // my-module.js
 import * as yargs from 'yargs';
+import chalk from 'chalk';
 import { optOutput } from './lib';
 
 const cmd = 'pathify';
 const cmdPathify:yargs.CommandModule = {
-  command: `${cmd} <input_file> [options]`,
+  // command: `$0 <input_file> [options]`,
+  // command: ` ` + chalk.cyanBright(`${cmd}`) + ` ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
+  command: `$0 ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
   aliases: ['pathify', 'path', 'p'],
-  describe: 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths',
+  describe: 'Convert shapes to paths',
   builder: (yargs) => {
-    return yargs.usage(`\n\nUSAGE\n=====\n $0 <input_file> [options]`)
+    return yargs
+    // .usage(`\n\n` + chalk.cyanBright(`${cmd}`) + `\n=====\n` + chalk.cyanBright(`${cmd}`) + ` ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`)
+    // .usage(` ` + chalk.cyanBright(`${cmd}`) + ` ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`)
+    // .usage(`$0 <input_file> [options]`)
     .positional("input_file", {describe: "SVG file to pathify"})
     .option("o", optOutput)
     // .help('help');

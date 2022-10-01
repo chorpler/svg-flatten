@@ -1,13 +1,16 @@
 #!/usr/bin/env ts-node
 
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import * as path  from 'path';
 import * as fs    from 'graceful-fs';
-import * as boxen from 'boxen';
-import * as YargsAll from 'yargs';
+// import * as boxen from 'boxen';
+// import * as YargsAll from 'yargs';
+import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import * as dotenv from 'dotenv';
 import { SvgMod } from './svgmod';
+import { commands } from './cmds';
+
 // const chalk  = require('chalk');
 // const path   = require('path');
 // const fs     = require('graceful-fs');
@@ -15,20 +18,23 @@ import { SvgMod } from './svgmod';
 // const yargs  = require('yargs');
 // const dotenv = require('dotenv');
 
+// import cmdFlatten from './cmds/flatten';
+
 // const flatlib = require('./lib');
-const yargs = YargsAll.default;
+// const yargs = YargsAll.default;
 // const cmd = 'svgflatten';
 const cmd = 'svgmod';
 
 dotenv.config();
 
-function checkCommands(yargs, argv, numRequired) {
-  if (argv._.length < numRequired) {
-    yargs.showHelp()
-  } else {
-    // check for unknown command
-  }
-}
+// function checkCommands(yargs, argv, numRequired) {
+//   if (argv._.length < numRequired) {
+//     yargs.showHelp()
+//   } else {
+//     // check for unknown command
+//   }
+// }
+//
 // .usage(`Usage: $0 (command) [-o <output_file>] <input_file>`)
 // .pathify [options] <input_file>', 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths', (yargs) => {
 //     yargs.usage(`\nUsage:\n ${cmd} pathify [options] <input_file>`)
@@ -66,55 +72,77 @@ function checkCommands(yargs, argv, numRequired) {
 //     }
 // })
 
-const optOutput = {
-    alias: ["out", "output", "output-file"],
-    describe: `Output file name (default: stdout)`,
-    // type: "string",
-    demandOption: false
-};
+// const optOutput = {
+//     alias: ["out", "output", "output-file"],
+//     describe: `Output file name (default: stdout)`,
+//     // type: "string",
+//     demandOption: false
+// };
 
-var argv = yargs(hideBin(process.argv))
-.usage(`\nUsage:\n ${cmd} (command) [-o <output_file>] <input_file>`)
-.commandDir('cmds', {
-  recurse: true,
-  extensions: ['js'],
-}).command({
-    command: 'pathify',
-    describe: 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths',
-    builder: (yargs) => {
-        return yargs.usage(`\nUsage:\n ${cmd} pathify [options] <input_file>`)
-        .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
-    },
-    handler: (a) => {
-        console.log("Pathifying");
-        return;
-    },
-})
-.command({
-  command: 'flatten',
-  describe: 'Converts groups of paths to a fat path, combining all child paths into one',
-  builder: (yargs) => {
-    return yargs.usage(`\nUsage:\n ${cmd} flatten [options] <input_file>`)
-    .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
-  },
-  handler: (a) => {
-    console.log("Flattening");
-    return;
-  },
-})
-.command({
-  command: 'transform',
-  describe: 'Apply SVG transformations to paths',
-  builder: (yargs) => {
-    return yargs.usage(`\nUsage:\n ${cmd} transform [options] <input_file>`)
-    .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
+// .command({
+//   command: 'flatten',
+//   describe: 'Converts groups of paths to a fat path, combining all child paths into one',
+//   builder: (yargs) => {
+//     return yargs.usage(`\nUsage:\n ${cmd} flatten [options] <input_file>`)
+//     .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
+//   },
+//   handler: (a) => {
+//     console.log("Flattening");
+//     return;
+//   },
+// })
 
-  },
-  handler: (a) => {
-    console.log("Transforming");
-    return;
-  },
-})
+// .commandDir('cmds', {
+//   recurse: true,
+//   extensions: ['js'],
+// })
+
+const rawArgV = process.argv;
+// console.log("RAW ARGS:\n", rawArgV);
+const argv = yargs(hideBin(rawArgV))
+.usage(`\n\n` + chalk.bgYellow.black('USAGE') + `\n=====\n$0 ` + chalk.cyanBright('(command)') + ` ` + chalk.greenBright(`<input_file>`) + ` [-o <output_file>]`)
+.command((commands as any))
+.positional("input_file", {describe: "SVG file to flatten"})
+.option("o", { alias: ["output"], describe: "Output filename (default stdout)", type: "string", demandOption: false })
+.option("f", { alias: ["force"], describe: "Overwrite input file", type: "boolean", demandOption: false })
+// .help('h', false)
+.alias('h', 'help')
+.alias('v', 'version')
+.help('help')
+.version()
+//  .command('$0', 'the default command', () => {}, (argv) => {
+    // main(argv);
+  // })
+.demandCommand(1)
+.wrap(100)
+.argv;
+ 
+
+// .command({
+//     command: 'pathify',
+//     describe: 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths',
+//     builder: (yargs) => {
+//         return yargs.usage(`\nUsage:\n ${cmd} pathify [options] <input_file>`)
+//         .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
+//     },
+//     handler: (a) => {
+//         console.log("Pathifying");
+//         return;
+//     },
+// })
+// .command({
+//   command: 'transform',
+//   describe: 'Apply SVG transformations to paths',
+//   builder: (yargs) => {
+//     return yargs.usage(`\nUsage:\n ${cmd} transform [options] <input_file>`)
+//     .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
+//
+//   },
+//   handler: (a) => {
+//     console.log("Transforming");
+//     return;
+//   },
+// })
 // .command({
 //     command: 'pathify',
 //     // choices: ['pathify', 'flatten', 'transform'],
@@ -138,15 +166,8 @@ var argv = yargs(hideBin(process.argv))
 //         }
 //     },
 // })
- .option("o", { alias: ["out", "output", "output-file"], describe: "File name to use as output, instead of stdout", type: "string", demandOption: false })
- .positional("inputfile", {describe: "SVG file to flatten"})
- .help('help')
-//  .command('$0', 'the default command', () => {}, (argv) => {
-    // main(argv);
-  // })
-.demandCommand(1)
- .argv;
- 
+
+
 //  yargs(hideBin(process.argv))
 //  .command('serve [port]', 'start the server', (yargs) => {
 //    return yargs
@@ -175,7 +196,9 @@ var argv = yargs(hideBin(process.argv))
 // let inputFilename = argv._.inputfile;
 
 async function main(inputargs) {
-  let inputFilename = inputargs._[0];
+  // console.log(`Main Args:\n`, inputargs);
+  let cmdToRun = inputargs._[0];
+  let inputFilename = inputargs._[1];
   // console.log("Main: arguments object is:\n", inputargs);
   // return;
   // console.log("Input SVG: ", inputFilename);
@@ -189,8 +212,19 @@ async function main(inputargs) {
   // let inputFile = fs.readFileSync(tempFilePath, { flag: 'r' });
   let inputFile = fs.readFileSync(inputFilePath, 'utf-8', { flag: 'r'});
   let svgSource = inputFile.toString();
+  console.log(`Read input file, size: ${svgSource.length}`);
   let svglib = new SvgMod(svgSource);
-  let outsvg = svglib.transform().value();
+  let outsvg:string;
+  if(cmdToRun === 'pathify') {
+    outsvg = svglib.pathify().value();
+  } else if(cmdToRun === 'flatten') {
+    outsvg = svglib.pathify().flatten().value();
+  } else if(cmdToRun === 'transform') {
+    outsvg = svglib.pathify().flatten().transform().value();
+  } else {
+    console.warn(`Unrecognized subcommand: ${cmdToRun}`);
+    return 2;
+  }
   if(inputargs.output) {
     let outfilePath = path.resolve(inputargs.output);
     fs.writeFileSync(outfilePath, outsvg, { encoding: 'utf8' });
