@@ -17,13 +17,130 @@ import { SvgMod } from './svgmod';
 
 // const flatlib = require('./lib');
 const yargs = YargsAll.default;
+// const cmd = 'svgflatten';
+const cmd = 'svgmod';
 
 dotenv.config();
 
-const argv = yargs(hideBin(process.argv))
- .usage("Usage: svgflatten (command) [-o <output_file>] <input_file>")
+function checkCommands(yargs, argv, numRequired) {
+  if (argv._.length < numRequired) {
+    yargs.showHelp()
+  } else {
+    // check for unknown command
+  }
+}
+// .usage(`Usage: $0 (command) [-o <output_file>] <input_file>`)
+// .pathify [options] <input_file>', 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths', (yargs) => {
+//     yargs.usage(`\nUsage:\n ${cmd} pathify [options] <input_file>`)
+//     .option("o", {
+//         alias: ["out", "output", "output-file"],
+//         describe: "File name to use as output, instead of stdout",
+//         type: "string",
+//         demandOption: false
+//     })
+//     .positional("inputfile", {describe: "SVG file to pathify"})
+//     .help('help')
+// })
+// .command('flatten [options] <input_file>', 'Converts groups of paths to a fat path, combining all child paths into one', (yargs) => {
+//     yargs.usage(`\nUsage:\n ${cmd} flatten [options] <input_file>`)
+//     .option("o", {
+//         alias: ["out", "output", "output-file"],
+//         describe: "File name to use as output, instead of stdout",
+//         type: "string",
+//         demandOption: false
+//     })
+//     .positional("inputfile", {describe: "SVG file to flatten"})
+//     .help('help')
+// })
+// .command('transform [options] <input_file>', 'Apply SVG transformations to paths', (yargs) => {
+//     yargs.usage(`\nUsage:\n ${cmd} transform [options] <input_file>`)
+//     .option("o", {
+//         alias: ["out", "output", "output-file"],
+//         describe: "File name to use as output, instead of stdout",
+//         type: "string",
+//         demandOption: false
+//     })
+//     .positional("inputfile", {describe: "SVG file to transform"})
+//     .help('help')
+// })
+//     }
+// })
+
+const optOutput = {
+    alias: ["out", "output", "output-file"],
+    describe: `Output file name (default: stdout)`,
+    // type: "string",
+    demandOption: false
+};
+
+var argv = yargs(hideBin(process.argv))
+.usage(`\nUsage:\n ${cmd} (command) [-o <output_file>] <input_file>`)
+.commandDir('cmds', {
+  recurse: true,
+  extensions: ['js'],
+}).command({
+    command: 'pathify',
+    describe: 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths',
+    builder: (yargs) => {
+        return yargs.usage(`\nUsage:\n ${cmd} pathify [options] <input_file>`)
+        .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
+    },
+    handler: (a) => {
+        console.log("Pathifying");
+        return;
+    },
+})
+.command({
+  command: 'flatten',
+  describe: 'Converts groups of paths to a fat path, combining all child paths into one',
+  builder: (yargs) => {
+    return yargs.usage(`\nUsage:\n ${cmd} flatten [options] <input_file>`)
+    .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
+  },
+  handler: (a) => {
+    console.log("Flattening");
+    return;
+  },
+})
+.command({
+  command: 'transform',
+  describe: 'Apply SVG transformations to paths',
+  builder: (yargs) => {
+    return yargs.usage(`\nUsage:\n ${cmd} transform [options] <input_file>`)
+    .option("o", optOutput).positional("inputfile", {describe: "SVG file to pathify"}).help('help');
+
+  },
+  handler: (a) => {
+    console.log("Transforming");
+    return;
+  },
+})
+// .command({
+//     command: 'pathify',
+//     // choices: ['pathify', 'flatten', 'transform'],
+//     // type: 'string',
+//     describe: 'The operation you want to perform on the SVG file',
+//     builder: {(yargs, helpOrVersionSet) => {
+//         return yargs.option('o', optOutput).positional("inputfile", {describe: "SVG file to transform", type: 'string'});
+//     },
+//     handler: ({sub, key, value}) => {
+//         if (sub === 'pathify') {
+//             console.log("Pathifying");
+//             return;
+//         } else if (sub === 'flatten') {
+//             console.log("flattening");
+//             return;
+//         } else if (sub === 'transform') {
+//             console.log("Transforming");
+//             return;
+//         } else {
+//             console.log("Command not found!");
+//         }
+//     },
+// })
  .option("o", { alias: ["out", "output", "output-file"], describe: "File name to use as output, instead of stdout", type: "string", demandOption: false })
  .positional("inputfile", {describe: "SVG file to flatten"})
+ .help('help')
 //  .command('$0', 'the default command', () => {}, (argv) => {
     // main(argv);
   // })
