@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="Default to 0 if x and y can't be found when converting rectangles">
+    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="IDEA disabled spell check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cli.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cli.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pathify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pathify.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmds/flatten.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmds/flatten.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmds/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmds/transform.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>
@@ -40,7 +48,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="stadline_master" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,7 +64,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="release/2.0.0" />
-                    <option name="lastUsedInstant" value="1664579268" />
+                    <option name="lastUsedInstant" value="1664609306" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1664609118" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -66,10 +78,6 @@
                     <option name="branchName" value="original" />
                     <option name="lastUsedInstant" value="1664571809" />
                   </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1664571808" />
-                  </RecentBranch>
                 </list>
               </option>
               <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
@@ -78,6 +86,9 @@
         </option>
       </RecentBranches>
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/@types/yargs/index.d.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -96,8 +107,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "eu.ydp.idea.ts.spec.generator.settings.spec.template": "import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';\n\ndescribe('$ClassName$', () => {\n  let $ObjName$:$ClassName$;\n\n  beforeEach(() => {\n    $ObjName$ = new $ClassName$();\n  });\n\n  describe('', () => {\n    it('', () => {\n      // given\n\n      // when\n\n      // then\n    });\n  });\n});\n",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General",
     "ts.external.directory.path": "/Users/admin/WebstormProjects/svg-flatten/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true",
     "zielu.gittoolbox.prj.config.selected.tab.id": "zielu.gittoolbox.config.shared.autoFetch"
@@ -152,11 +165,62 @@
       <option name="project" value="LOCAL" />
       <updated>1664600791617</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Moved old JS source files from cmds to a backup directory">
+      <created>1664615943847</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664615943847</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Replaced old JS command source with TypeScript">
+      <created>1664615976219</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1664615976219</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Removing some SVG testing results (whoops)">
+      <created>1664616044354</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1664616044354</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Compile command update">
+      <created>1664616115648</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1664616115648</updated>
+    </task>
+    <task id="LOCAL-00010" summary="TypeScript target and module type changed">
+      <created>1664616145103</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1664616145103</updated>
+    </task>
+    <task id="LOCAL-00011" summary="IDEA disabled spell check">
+      <created>1664616165213</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1664616165213</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/cmds/parse.js" />
+        <option value="$PROJECT_DIR$/src/cmds/flatten.js" />
+        <option value="$PROJECT_DIR$/src/cmds/transform.js" />
+        <option value="$PROJECT_DIR$/src/cmds/pathify.js" />
+        <option value="$PROJECT_DIR$/src/cmds/lib.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -176,6 +240,12 @@
     <MESSAGE value="Added scripts to clear screen" />
     <MESSAGE value="New scripts and esbuild option" />
     <MESSAGE value="Default to 0 if x and y can't be found when converting rectangles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Default to 0 if x and y can't be found when converting rectangles" />
+    <MESSAGE value="Moved old JS source files from cmds to a backup directory" />
+    <MESSAGE value="Replaced old JS command source with TypeScript" />
+    <MESSAGE value="Removing some SVG testing results (whoops)" />
+    <MESSAGE value="Compile command update" />
+    <MESSAGE value="TypeScript target and module type changed" />
+    <MESSAGE value="IDEA disabled spell check" />
+    <option name="LAST_COMMIT_MESSAGE" value="IDEA disabled spell check" />
   </component>
 </project>
