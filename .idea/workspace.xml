@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="IDEA disabled spell check">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cli.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cli.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmds/flatten.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmds/flatten.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmds/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmds/transform.ts" afterDir="false" />
-    </list>
+    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="IDEA workspace updated" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -207,7 +202,28 @@
       <option name="project" value="LOCAL" />
       <updated>1664616165213</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Yargonaut added for yargs colors">
+      <created>1664619674351</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1664619674351</updated>
+    </task>
+    <task id="LOCAL-00013" summary="CLI coloring attempt">
+      <created>1664619802094</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1664619802094</updated>
+    </task>
+    <task id="LOCAL-00014" summary="IDEA workspace updated">
+      <created>1664619832287</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1664619832287</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +262,9 @@
     <MESSAGE value="Compile command update" />
     <MESSAGE value="TypeScript target and module type changed" />
     <MESSAGE value="IDEA disabled spell check" />
-    <option name="LAST_COMMIT_MESSAGE" value="IDEA disabled spell check" />
+    <MESSAGE value="Yargonaut added for yargs colors" />
+    <MESSAGE value="CLI coloring attempt" />
+    <MESSAGE value="IDEA workspace updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="IDEA workspace updated" />
   </component>
 </project>
