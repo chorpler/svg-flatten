@@ -10,9 +10,9 @@
   "browser": "lib/index.browser.js",
   "types": "src/index.ts",
   "bin": {
-    "flatten": "build/flatten.js",
-    "pathify": "build/pathify.js",
-    "transform": "build/transform.js",
+    "flatten": "build/cmds/flatten.js",
+    "pathify": "build/cmds/pathify.js",
+    "transform": "build/cmds/transform.js",
     "cli": "build/cli.js"
   },
   "files": [
@@ -39,7 +39,7 @@
     "clrscr": "node -e \"process.stdout.write('\\x1B[2J\\x1B[0f')\"",
     "clear": "node scripts/itermclear.js",
     "typescript": "tsc -p ./tsconfig.json",
-    "compile": "npm run clean:ts && npm run typescript && npm run cmdify",
+    "compile": "npm run clean:ts && npm run typescript",
     "cli": "node .",
     "cmdify": "mkdirp build/cmds && cp -avf build/transform.js build/cmds/ && cp -avf build/flatten.js build/cmds/ && cp -avf build/pathify.js build/cmds/",
     "declarations": "tsc -p ./tsconfig.json --emitDeclarationOnly",
