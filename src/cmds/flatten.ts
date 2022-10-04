@@ -5,7 +5,7 @@ import { optOutput } from './lib';
 
 const cmd = 'flatten';
 const cmdFlatten:yargs.CommandModule = {
-  command: `$0 ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
+  command: `$0  <input_file> [options]`,
   // command: `\n\n` + chalk.cyanBright(`${cmd}`) + `\n=====\n $0 ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
   aliases: ['flatten', 'flat', 'fl', 'f'],
   // describe: 'Converts groups of paths to a fat path, combining all child paths into one',

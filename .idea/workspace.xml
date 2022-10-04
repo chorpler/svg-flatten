@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="IDEA workspace updated" />
+    <list default="true" id="c6cc573b-1ec9-4b1f-b815-4bd77d68e374" name="Changes" comment="IDEA workspace updated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cli.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cli.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmds/flatten.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmds/flatten.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmds/pathify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmds/pathify.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmds/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmds/transform.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +111,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
     "ts.external.directory.path": "/Users/admin/WebstormProjects/svg-flatten/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true",
     "zielu.gittoolbox.prj.config.selected.tab.id": "zielu.gittoolbox.config.shared.autoFetch"
@@ -124,6 +130,7 @@
       <workItem from="1664568513787" duration="1136000" />
       <workItem from="1664573178118" duration="2125000" />
       <workItem from="1664583758277" duration="9965000" />
+      <workItem from="1664810377106" duration="350000" />
     </task>
     <task id="LOCAL-00001" summary="Added .idea directory from WebStorm">
       <created>1664579124349</created>
@@ -223,7 +230,21 @@
       <option name="project" value="LOCAL" />
       <updated>1664619832287</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Usage updated">
+      <created>1664621267925</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1664621267925</updated>
+    </task>
+    <task id="LOCAL-00016" summary="IDEA workspace updated">
+      <created>1664621275676</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1664621275676</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,6 +285,7 @@
     <MESSAGE value="IDEA disabled spell check" />
     <MESSAGE value="Yargonaut added for yargs colors" />
     <MESSAGE value="CLI coloring attempt" />
+    <MESSAGE value="Usage updated" />
     <MESSAGE value="IDEA workspace updated" />
     <option name="LAST_COMMIT_MESSAGE" value="IDEA workspace updated" />
   </component>

@@ -17,7 +17,7 @@ const cmd = 'svgmod';
 dotenv.config();
 
 const rawArgV = process.argv;
-// console.log("RAW ARGS:\n", rawArgV);
+console.log("RAW ARGS:\n", rawArgV);
 
 const boxenOptions:boxen.Options = {
   padding: {top: 1, bottom: 1, left: 46, right: 46},
@@ -192,9 +192,9 @@ const argv = yargs(hideBin(rawArgV))
 // let inputFilename = argv._.inputfile;
 
 async function main(inputargs) {
-  // console.log(`Main Args:\n`, inputargs);
+  console.log(`Main Args:\n`, inputargs);
   let cmdToRun = inputargs._[0];
-  let inputFilename = inputargs._[1];
+  let inputFilename = inputargs._[1] || inputargs.input_file;
   // console.log("Main: arguments object is:\n", inputargs);
   // return;
   // console.log("Input SVG: ", inputFilename);
@@ -216,7 +216,7 @@ async function main(inputargs) {
   } else if(cmdToRun === 'flatten') {
     outsvg = svglib.pathify().flatten().value();
   } else if(cmdToRun === 'transform') {
-    outsvg = svglib.pathify().flatten().transform().value();
+    outsvg = svglib.pathify().transform().value();
   } else {
     console.warn(`Unrecognized subcommand: ${cmdToRun}`);
     return 2;

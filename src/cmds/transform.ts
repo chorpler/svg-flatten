@@ -7,7 +7,7 @@ const cmd = 'transform';
 const cmdTransform:yargs.CommandModule = {
   // command: `$0 <input_file> [options]`,
   // command: `$0 ` + chalk.cyanBright(`${cmd}`) + ` ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
-  command: `$0 ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
+  command: `$0 <input_file> [options]`,
   aliases: ['transform', 'trans', 'tran', 'tr', 't'],
   // describe: 'Apply SVG transformations to paths',
   describe: 'Apply all transforms',

@@ -7,7 +7,7 @@ const cmd = 'pathify';
 const cmdPathify:yargs.CommandModule = {
   // command: `$0 <input_file> [options]`,
   // command: ` ` + chalk.cyanBright(`${cmd}`) + ` ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
-  command: `$0 ` + chalk.greenBright('<input_file>') + ` ` + ` [options]`,
+  command: `$0  <input_file> [options]`,
   aliases: ['pathify', 'path', 'p'],
   // describe: 'Turns SVG shapes (polygon, polyline, rect, group) into SVG paths',
   describe: 'Convert shapes to paths',

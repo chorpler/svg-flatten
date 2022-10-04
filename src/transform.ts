@@ -43,9 +43,10 @@ export class SvgTransform {
   public static transform(dom:XmlChunk):XmlDocument {
     if(dom && (dom as XmlDocument).name != null) {
       dom = (dom as XmlDocument);
-      if (dom.name === 'path' && dom.attr.transform) {
+      if(dom.name === 'path' && dom.attr.transform) {
         return SvgTransform.transformPath(dom);
       } else if (dom.name === 'svg' || dom.name === 'g') {
+        console.log(`Transform.transform(): Transforming element name ${dom.name}`);
         return SvgTransform.transformGroup(dom);
       } else {
         return (dom as XmlDocument);
